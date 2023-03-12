@@ -1,24 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from './components/Header';
+import TextBox from './components/TextBox';
+import About from './components/About';
+import { BrowserRouter as Router, Routes, Route  } from 'react-router-dom';
 
 function App() {
+  let menuObjs = [{
+    title: 'Home',
+    link: '/'
+  },
+  {
+    title: 'About',
+    link: '/about'
+  }]
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header title='Text Formatter' menu={menuObjs}></Header>
+      <Router>
+        <Routes>
+          <Route exact path='/' element={
+            <div className='px-10'>
+              <TextBox/>
+            </div>
+          }></Route>
+          <Route exact path='/about' element={<About/>}></Route>
+        </Routes>
+      </Router>
+    </>
   );
 }
 
